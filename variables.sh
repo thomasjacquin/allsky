@@ -102,7 +102,7 @@ if [[ -z "${ALLSKY_VARIABLE_SET}" ]]; then
 	ALLSKY_OVERLAY="${ALLSKY_CONFIG}/overlay"
 	ALLSKY_MODULES="${ALLSKY_CONFIG}/modules"
 	ALLSKY_MODULE_LOCATION="/opt/allsky"
-	ALLSKY_EXTRA="${ALLSKY_OVERLAY}/extra"
+	ALLSKY_EXTRA="${ALLSKY_TMP}/extra"
 
 	# Directories and files for the flow timer function
 	ALLSKY_FLOWTIMINGS="${ALLSKY_TMP}/flowtimings"
