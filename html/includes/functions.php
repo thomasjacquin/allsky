@@ -702,21 +702,7 @@ function runCommand($cmd, $onSuccessMessage, $messageColor, $addMsg=true, $onFai
 		$status->addMessage($onSuccessMessage, $messageColor, false);
 
 	// Display any output from the command.
-	// If there are any lines that begin with:  ERROR  or  WARNING
-	// then display them in the appropriate format.
-	if ($result != null) {
-		//x $status->addMessage(implode("<br>", $result), "message", false);
-  		foreach ( $result as $line) {
-			if (strpos($line, "ERROR:") !== false) {
-				$sev = "danger";
-			} else if (strpos($line, "WARNING:") !== false) {
-				$sev = "warning";
-			} else {
-				$sev = "message";
-			}
-			$status->addMessage("$line<br>", $sev, false);
-		}
-	}
+	if ($result != null) $status->addMessage(implode("<br>", $result), "message", false);
 
 	return true;
 }
@@ -864,5 +850,31 @@ function getTOD() {
 	}
 	
 	return $tod;
+}
+
+function getDatefromDay($date) {
+	$year = substr($date, 0, 4);
+	$month = substr($date, 4, 2);
+	$day = substr($date, 6, 2);
+
+	$date = DateTime::createFromFormat('Y-m-d', "$year-$month-$day");
+	return $date->format('D M d Y');
+}
+
+function getImageTime($filename) {
+	$filename = basename($filename);
+	$timeStamp = substr($filename, strrpos($filename, '-') + 1);
+	
+	// YYYY MM DD HH MM SS
+	// 0123 45 67 89 01 23
+	$year = substr($timeStamp, 0, 4);
+	$month = substr($timeStamp, 4, 2);
+	$day = substr($timeStamp, 6, 2);
+	$hour = substr($timeStamp, 8, 2);
+	$minute = substr($timeStamp, 10, 2);
+	$second = substr($timeStamp, 12, 2);
+
+	$date = DateTime::createFromFormat('Y-m-d H:i:s', "$year-$month-$day $hour:$minute:$second");
+	return $date->format('D M d Y') . " @ " . $hour . ":" . $minute . ":" . $second;
 }
 ?>
