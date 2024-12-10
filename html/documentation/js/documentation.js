@@ -1,7 +1,7 @@
 // Modify URLs on the GitHub server so we can view pages there OR on a Pi.
 // Also, allow files to be included since GitHub doesn't have PHP.
 
-var debug = false;
+var debug = true;
 
 // branch is updated during installation.
 var branch = "master";
